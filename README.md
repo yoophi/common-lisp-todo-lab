@@ -17,4 +17,4 @@ Common Lisp + SBCL로 Todo RESTful API를 만드는 학습용 프로젝트다. S
 - [SBCL의 역사와 특징](docs/sbcl-overview.md)
 - [라이브러리 선택과 대안](docs/library-selection.md)
 
-현재 단계에서는 프로젝트 목표와 기술 선택을 기록한다. 구현과 실행 방법은 다음 커밋에서 추가한다.
+ASDF·패키지·의존성 관리와 REPL을 구성했다. [개발환경](docs/development.md)을 따라 `make setup`, `make repl`로 시작한다.

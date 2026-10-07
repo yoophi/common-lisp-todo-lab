@@ -1,0 +1,5 @@
+# Qlot adds the official Quicklisp distribution automatically.
+# Development REPL backend (Vlime).
+ql slime
+ql cl-json
+ql usocket
