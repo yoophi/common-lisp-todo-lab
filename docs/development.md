@@ -4,7 +4,7 @@
 
 - SBCL: Common Lisp 컴파일러·REPL
 - Qlot 1.8.4: 프로젝트 안의 `.tools/qlot`에 설치하는 의존성 도구
-- ASDF: `clisp-todo-api.asd`에 소스와 의존성 선언
+- ASDF: `common-lisp-todo-lab.asd`에 소스와 의존성 선언
 - SQLite: 로컬 파일 기반 영속 저장소
 - Neovim: lazy.nvim + Vlime + Paredit
 
@@ -12,7 +12,7 @@
 
 ```sh
 brew install sbcl openssl@3 sqlite
-cd /Users/yoophi/project/clisp-todo-api
+cd /Users/yoophi/project/common-lisp-todo-lab
 make setup
 make test
 make dev
@@ -55,7 +55,7 @@ PORT=8081 ./build/todo-api
 
 ## Docker 런타임 준비
 
-이 머신에는 프로젝트 전용 Colima 프로필 `clisp-todo-api`(CPU 2개, 메모리 4GiB, 디스크 20GiB)를 준비했다. 시작 과정에서 Docker의 현재 컨텍스트가 `colima-clisp-todo-api`로 바뀌었다.
+이 머신에서는 프로젝트 이름 변경 전에 생성한 Colima 프로필 `clisp-todo-api`(CPU 2개, 메모리 4GiB, 디스크 20GiB)를 계속 사용한다. Docker 컨텍스트 이름도 `colima-clisp-todo-api`다.
 
 ```sh
 colima start --profile clisp-todo-api
@@ -78,7 +78,7 @@ Compose는 Homebrew의 `docker-compose` 명령을 사용한다. 배포용 Docker
 `.lisp`, `.cl`, `.asd`를 Lisp 파일로 인식한다. 문법 강조는 Neovim 기본 기능을 사용하며, 연결 후 들여쓰기와 완성은 Vlime가 제공한다. 별도 Common Lisp LSP는 필요하지 않다. 실행 중인 Lisp 이미지에 연결하는 방식이다.
 
 ```sh
-cd /Users/yoophi/project/clisp-todo-api
+cd /Users/yoophi/project/common-lisp-todo-lab
 nvim src/server.lisp
 ```
 

@@ -1,4 +1,4 @@
-# clisp-todo-api
+# common-lisp-todo-lab
 
 Common Lisp + SBCL로 Todo RESTful API를 구현하며 Lisp 개발을 배우는 학습용 프로젝트입니다. Todo 데이터는 SQLite에 영속화하며, 서비스가 재시작되어도 유지됩니다.
 
@@ -10,7 +10,7 @@ Common Lisp + SBCL로 Todo RESTful API를 구현하며 Lisp 개발을 배우는 
 - **개발 환경: macOS**
 - **빌드 및 배포 환경: Linux Docker**
 
-Common Lisp은 언어이며, SBCL은 Common Lisp 구현체입니다. 프로젝트 이름의 `clisp`는 GNU CLISP 구현체 사용을 의미하지 않습니다. 이 프로젝트는 SBCL을 기준으로 개발하고 실행합니다.
+Common Lisp은 언어이며, SBCL은 Common Lisp 구현체입니다. 이 프로젝트는 SBCL을 기준으로 개발하고 실행합니다.
 
 프로젝트의 목표는 Todo 생성·조회·수정·삭제와 완료 상태 변경을 HTTP API로 제공하는 웹서비스를 만드는 것입니다.
 
@@ -62,6 +62,7 @@ make dev
 - `make build`: 현재 OS·CPU용 `build/todo-api` 실행 파일 생성
 - `make check`: Lisp 테스트, 빌드, HTTP·영속화 통합 테스트
 - [API 사용법과 응답 규약](docs/api.md)
+- [OpenAPI 3.0.3 명세 (swagger.json)](swagger.json): Swagger Editor/UI에 가져올 수 있는 정적 명세
 - [macOS 및 Neovim 개발 안내](docs/development.md)
 - [SBCL 역사와 구현체 비교](docs/sbcl-overview.md)
 

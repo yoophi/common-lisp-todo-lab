@@ -1,6 +1,8 @@
 # Todo RESTful API
 
+[swagger.json](../swagger.json)은 OpenAPI 3.0.3 형식의 정적 명세다. Swagger Editor/UI에 가져와 사용할 수 있다. 현재 서버에 `/swagger.json` 또는 Swagger UI 경로를 제공하는 것은 아니다. 서버 주소는 IPv4 `http://127.0.0.1:8080`으로 지정했다.
 
+명세 검증: `uvx --from openapi-spec-validator openapi-spec-validator swagger.json`
 
 `make dev`로 시작한다. 기본값은 `HOST=127.0.0.1`, `PORT=8080`, `DATABASE_PATH=data/todos.db`다. SQLite 파일과 테이블은 시작 시 준비한다. 현재 API는 인증 없는 단일 Todo 목록을 제공한다.
 
