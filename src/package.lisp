@@ -1,2 +1,3 @@
 (defpackage #:todo-api
-  (:use #:cl))
+  (:use #:cl)
+  (:export #:start #:stop #:main))
