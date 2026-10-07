@@ -17,3 +17,7 @@ build:
 .PHONY: test
 test:
 	$(LISP) --script tests/smoke.lisp
+
+.PHONY: check
+check: test build
+	python3 tests/crud_http.py

@@ -2,24 +2,17 @@
 
 (defvar *server* nil)
 
-(defun make-app ()
-  (let ((app (make-instance 'ningle:app)))
-    (setf (ningle:route app "/health" :method :get)
-          (lambda (params)
-            (declare (ignore params))
-            (let ((body (make-hash-table :test 'equal)))
-              (setf (gethash "status" body) "ok")
-              (list 200 '(:content-type "application/json; charset=utf-8")
-                    (list (com.inuoe.jzon:stringify body))))))
-    app))
+(defun make-app (path)
+  (api-boundary (configure-routes (make-instance 'todo-app)) path))
 
 (defun start (&key (host (or (uiop:getenv "HOST") "127.0.0.1"))
                    (port (parse-integer (or (uiop:getenv "PORT") "8080"))))
   (when *server* (error "Server is already running."))
-  (initialize-database)
-  (setf *server* (clack:clackup (make-app) :server :hunchentoot
+  (let ((path (merge-pathnames (database-path) (uiop:getcwd))))
+    (initialize-database path)
+    (setf *server* (clack:clackup (make-app path) :server :hunchentoot
                                         :address host :port port
-                                        :use-thread t :debug nil)))
+                                        :use-thread t :debug nil))))
 
 (defun stop ()
   (when *server*
