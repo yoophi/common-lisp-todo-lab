@@ -13,3 +13,7 @@ dev:
 build:
 	mkdir -p build
 	$(LISP) --script scripts/build.lisp
+
+.PHONY: test
+test:
+	$(LISP) --script tests/smoke.lisp

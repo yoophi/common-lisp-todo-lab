@@ -1,0 +1,23 @@
+(load "scripts/load.lisp")
+(let ((file (merge-pathnames
+             (format nil "todo-api-smoke-~A.db" (symbol-name (gensym)))
+             (uiop:temporary-directory))))
+  (unwind-protect
+       (progn
+         (todo-api:initialize-database file)
+         (todo-api:initialize-database file)
+         (dbi:with-connection (connection :sqlite3 :database-name file)
+           (dbi:do-sql connection "CREATE TABLE probe (title TEXT NOT NULL)")
+           (dbi:do-sql connection "INSERT INTO probe VALUES (?)" (list "한글 Todo")))
+         (dbi:with-connection (connection :sqlite3 :database-name file)
+           (let* ((query (dbi:prepare connection "SELECT title FROM probe"))
+                  (row (unwind-protect (dbi:fetch (dbi:execute query))
+                         (dbi:free-query-resources query))))
+             (assert (string= "한글 Todo" (getf row :|title|)))))
+         (let ((body (com.inuoe.jzon:parse "{\"completed\":false}")))
+           (multiple-value-bind (value present) (gethash "completed" body)
+             (assert present)
+             (assert (null value)))
+           (assert (string= "{\"completed\":false}" (com.inuoe.jzon:stringify body))))
+         (format t "SQLite reconnect persistence and JSON boolean checks passed.~%"))
+    (when (probe-file file) (delete-file file))))

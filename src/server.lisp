@@ -16,6 +16,7 @@
 (defun start (&key (host (or (uiop:getenv "HOST") "127.0.0.1"))
                    (port (parse-integer (or (uiop:getenv "PORT") "8080"))))
   (when *server* (error "Server is already running."))
+  (initialize-database)
   (setf *server* (clack:clackup (make-app) :server :hunchentoot
                                         :address host :port port
                                         :use-thread t :debug nil)))
