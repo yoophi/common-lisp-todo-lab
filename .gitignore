@@ -1,0 +1,12 @@
+.tools/
+.todos/
+.qlot/
+.cache/
+build/
+data/
+*.fasl
+*.db
+*.db-shm
+*.db-wal
+.env
+.DS_Store
